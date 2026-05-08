@@ -31,10 +31,12 @@ function App() {
 
       const data = await res.json();
 
+      console.log("FETCHED DATA")
       console.log(data)
 
       if (data.error) {
         alert(data.error);
+        console.log(data.message)
         return;
       }
 

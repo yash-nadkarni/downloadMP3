@@ -120,6 +120,7 @@ app.post("/info", (req, res) => {
             console.error("YT-DLP ERROR:", error);
             console.error("STDERR:", stderr);
             return res.status(500).json({
+                message: `STDERR: ${stderr}`,
                 error: "Failed to fetch info"
             });
         }
