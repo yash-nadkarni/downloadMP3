@@ -19,6 +19,7 @@ function App() {
     setLoadingInfo(true);
 
     try {
+      console.log("TRYING")
       console.log(JSON.stringify({url}))
       const res = await fetch(`${API}/info`, {
         method: "POST",
@@ -40,6 +41,7 @@ function App() {
       setInfo(data);
     }
     catch (err) {
+      console.log("FAILED TO FETCH VIDEO INFO ERROR")
       console.error(err);
       alert("Failed to fetch video info");
     }
