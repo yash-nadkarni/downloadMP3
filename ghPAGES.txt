@@ -1,0 +1,8 @@
+For making changes to github pages:
+
+After running npm run build for frontend, go into dist folder and run the following:
+
+git checkout -b gh-pages 
+git add -A   
+git commit -m "deploy" 
+git push -f https://github.com/yash-nadkarni/downloadMP3.git gh-pages
