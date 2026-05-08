@@ -13,8 +13,7 @@ function App() {
   const [converting, setConverting] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState("");
 
-  const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
-  const API = BASE_URL;
+  const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
   const fetchInfo = async () => {
     setLoadingInfo(true);
