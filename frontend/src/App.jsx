@@ -78,7 +78,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-900 text-white flex items-center justify-center p-5">
+    <div className="min-h-screen bg-zinc-900 text-white flex flex-col items-center justify-center p-5">
       <div className="w-full max-w-xl bg-zinc-800 rounded-2xl p-6 shadow-xl">
 
         <h1 className="text-3xl font-bold mb-6 text-center">
@@ -148,6 +148,9 @@ function App() {
         )}
 
       </div>
+      <h4 className="fixed bottom-0 left-0 w-full mb-6 text-center text-zinc-400 font-medium text-lg">
+        dumbass app by yash
+      </h4>
     </div>
   );
 
