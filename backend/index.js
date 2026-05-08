@@ -25,7 +25,7 @@ app.use(limiter);
 const PORT = process.env.PORT || 3000;
 const proxyUrl = process.env.WEBSHARE_PROXY;
 
-const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+const BASE_URL = process.env.DOWNLOAD_URL || "https://downloadmp3-8uzj.onrender.com" || `http://localhost:${PORT}`;
 
 const DOWNLOADS_DIR = path.join(__dirname, "downloads");
 
