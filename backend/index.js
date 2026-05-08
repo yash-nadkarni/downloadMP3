@@ -21,6 +21,7 @@ app.use(limiter);
 const PORT = 3000;
 
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+//const BASE_URL = `http://localhost:${PORT}`;
 
 const DOWNLOADS_DIR = path.join(__dirname, "downloads");
 
@@ -52,10 +53,12 @@ app.post("/convert", (req, res) => {
         });
     }
 
-    const infoCommand = `yt-dlp --dump-json "${url}"`;
+    const infoCommand = `yt-dlp -j "${url}"`;
 
-    exec(infoCommand, (err, stdout) => {
+    exec(infoCommand, (err, stdout, stderr) => {
         if (err) {
+            console.error("YT-DLP ERROR:", err);
+            console.error("STDERR:", stderr);
             return res.status(500).json({ error: "Failed to fetch video info" });
         }
 
@@ -65,6 +68,8 @@ app.post("/convert", (req, res) => {
         } catch {
             return res.status(500).json({ error: "Invalid metadata response" });
         }
+
+        console.log(data)
 
         //filename cleaning
         const cleanTitle = data.title
@@ -94,7 +99,7 @@ app.post("/convert", (req, res) => {
             res.json({
                 success: true,
                 title: cleanTitle,
-                download: `${BASE_URL}}/download/${cleanTitle}.mp3`
+                download: `${BASE_URL}/download/${cleanTitle}.mp3`
             });
         });
     });
@@ -104,13 +109,16 @@ app.post("/convert", (req, res) => {
 
 
 app.post("/info", (req, res) => {
+    console.log("INFO")
     const { url } = req.body;
+    console.log(url)
 
-    const command =
-        `yt-dlp --dump-json "${url}"`;
+    const command = `yt-dlp -j "${url}"`;
 
-    exec(command, (error, stdout) => {
+    exec(command, (error, stdout, stderr) => {
         if (error) {
+            console.error("YT-DLP ERROR:", error);
+            console.error("STDERR:", stderr);
             return res.status(500).json({
                 error: "Failed to fetch info"
             });

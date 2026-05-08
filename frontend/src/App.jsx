@@ -19,6 +19,7 @@ function App() {
     setLoadingInfo(true);
 
     try {
+      console.log(JSON.stringify({url}))
       const res = await fetch(`${API}/info`, {
         method: "POST",
         headers: {
@@ -28,6 +29,8 @@ function App() {
       });
 
       const data = await res.json();
+
+      console.log(data)
 
       if (data.error) {
         alert(data.error);
